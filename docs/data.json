@@ -3,7 +3,7 @@
  "unit": "MW of IT (critical) capacity added per year, medians",
  "updated": "2026-08-13",
  "estimate_year": "2026",
- "note": "Three red-team rounds applied: source audit, colocation-scope audit, forecast-methodology repair (2026-08-13); US 2026E scope correction applied",
+ "note": "Three red-team rounds applied: source audit, colocation-scope audit, forecast-methodology repair (2026-08-13); US 2026E scope correction applied; US 2024-25 phasing revision (FERC total, SemiAnalysis split)",
  "countries": {
   "Germany": {
    "2022": {
@@ -213,12 +213,12 @@
     "reasoning": "[FERC Figure 5](https://www.ferc.gov/sites/default/files/2026-03/26_State-of-the-Market_0324_1430.pdf) is the anchor: national in-service capacity increases from about 26.0 GW at year-end 2022 to 31.9 GW at year-end 2023, or roughly 5.9 GW of net facility capacity. Dividing by the same 1.30 PUE inferred from [LBNL's national efficiency analysis](https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report.pdf?stream=top) gives about 4.5 GW of IT capacity. As a partial-universe check, [CBRE](https://www.cbre.com/press-releases/north-american-data-center-pricing-nears-record-highs-driven-by-demand-limited-availablily) reports that the eight primary wholesale markets alone grew 26% to 5,174.1 MW in 2023."
    },
    "2024": {
-    "mw": 6700.0,
-    "reasoning": "[FERC Figure 5](https://www.ferc.gov/sites/default/files/2026-03/26_State-of-the-Market_0324_1430.pdf) is the anchor: the in-service national bar rises from about 31.9 GW in 2023 to 40.6 GW in 2024, an approximately 8.7 GW net facility-power increase. At PUE 1.30 this implies 6.7 GW of added IT capacity; the factor is consistent with [LBNL](https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report.pdf?stream=top), which places hyperscale/colocation average PUE below 1.4. [CBRE's](https://www.cbre.com/press-releases/north-american-data-center-construction-hit-new-heights-in-2024-amid-surging-demand) 1,748.5 MW increase in only eight primary wholesale markets is a corroborating floor, not the national anchor."
+    "mw": 5500.0,
+    "reasoning": "[FERC/Yes Energy](https://www.ferc.gov/sites/default/files/2026-03/26_State-of-the-Market_0324_1430.pdf)'s measured 2024–25 in-service increase is retained at 14.6 GW of critical IT after the 1.30 PUE conversion, but its annual timing is replaced by [SemiAnalysis](https://newsletter.semianalysis.com/p/ai-datacenter-energy-dilemma-race)'s 22,553 → 28,297 → 37,738 MW critical-IT series: 37.8% of the two-year addition falls in 2024, or 5,500 MW. FERC in-service dating lags energization; [Epoch's frontier-site tracker](https://epoch.ai/data/ai-data-centers) independently puts only 24–27% in 2024, confirming the back-loading direction."
    },
    "2025": {
-    "mw": 7900.0,
-    "reasoning": "[FERC Figure 5](https://www.ferc.gov/sites/default/files/2026-03/26_State-of-the-Market_0324_1430.pdf) is the anchor: national in-service data-center capacity increases from about 40.6 GW at year-end 2024 to 50.9 GW at year-end 2025, a net addition near 10.3 GW of facility power. Dividing by 1.30 gives 7.9 GW IT; [LBNL](https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report.pdf?stream=top) supports the PUE convention, while [JLL's](https://www.jll.com/en-us/newsroom/jll-north-america-data-center-report-year-end-2025) 39 GW of active North American capacity is a scale check on the converted stock. [CBRE](https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025) independently shows 2,509.4 MW added in the eight primary wholesale markets alone."
+    "mw": 9100.0,
+    "reasoning": "[FERC/Yes Energy](https://www.ferc.gov/sites/default/files/2026-03/26_State-of-the-Market_0324_1430.pdf)'s measured 2024–25 in-service increase is retained at 14.6 GW of critical IT after the 1.30 PUE conversion, but its annual timing is replaced by [SemiAnalysis](https://newsletter.semianalysis.com/p/ai-datacenter-energy-dilemma-race)'s 22,553 → 28,297 → 37,738 MW critical-IT series: 62.2% of the two-year addition falls in 2025, or 9,100 MW. FERC in-service dating lags energization; [Epoch's frontier-site tracker](https://epoch.ai/data/ai-data-centers) independently puts 73–76% in 2025, confirming the back-loading direction."
    },
    "2026": {
     "mw": 16200.0,
