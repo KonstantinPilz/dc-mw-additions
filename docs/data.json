@@ -3,7 +3,7 @@
  "unit": "MW of IT (critical) capacity added per year, medians",
  "updated": "2026-08-12",
  "estimate_year": "2026",
- "note": "Red-team adjusted 2026-08-12 (19 rows).",
+ "note": "Red-team round 1 (19 rows) + round-2 colocation-scope audit (22 adjusted, 18 marked as floors), 2026-08-12.",
  "countries": {
   "Germany": {
    "2022": {
@@ -15,16 +15,16 @@
     "reasoning": "The [GDA national study](https://www.germandatacenters.com/fileadmin/images/DCIRD-24/Data-Center-Impact-Report-Deutschland-2024_EN.pdf) reports comparable colocation-plus-hyperscale snapshots of 1,202 MW on 1 January 2023 and 1,349 MW on 1 January 2024, yielding 147 MW. [JLL's 134 MW Frankfurt addition](https://www.jll.com/en-de/insights/german-data-center-market-addressing-rising-demand) corroborates that most, but not all, of the national increase was in Frankfurt."
    },
    "2024": {
-    "mw": 147,
+    "mw": 147.0,
     "reasoning": "The same-vintage [EUDCA/Pb7 2025 tables](https://www.eudca.org/documents/content/E8VdyUuATTC_BmbNp4nhAwo89?download=0) give 1,330 MW colocation/scale plus 10 MW hyperscale-owned in 2023 and 1,467 + 20 MW in 2024. The corrected addition is (1,467 + 20) - (1,330 + 10) = 147 MW, avoiding the original cross-vintage splice. [Red-team adjusted 2026-08-12.]"
    },
    "2025": {
-    "mw": 280.0,
-    "reasoning": "The [EUDCA 2026 country table](https://www.eudca.org/documents/content/ZlZXb4bRSRefaEVqya2I_Aoea?download=0) gives 1,737 MW of colocation/scale-colocation plus 20 MW hyperscale-owned at end-2025, versus 1,478 MW at end-2024. That 279 MW snapshot delta rounds to 280 MW and is consistent with [CBRE's 227 MW Frankfurt delivery forecast as of Q3](https://mediaassets.cbre.com/-/media/project/cbre/shared-site/insights/figures/European-Data-Centres-Figures-Q3-2025/European-Data-Centres-Figures-Q3-2025), plus Berlin, Munich and other German markets."
+    "mw": 291.0,
+    "reasoning": "The EUDCA/Pb7 baseline covers colocation and owned hyperscale but excludes public research HPC, so the [JUPITER exascale system](https://www.eurohpc-ju.europa.eu/jupiter-launching-europes-exascale-era-2025-09-05_en) is outside its scope. JUPITER went live in September 2025 and its [technical brief](https://www.fz-juelich.de/en/newsroom-jupiter/2024_jupiter_fzj_en.pdf/%40%40download/file) gives about 11 MW of computer load, yielding 280 + 11 = 291 MW. [Scope-audit adjusted 2026-08-12.]"
    },
    "2026": {
-    "mw": 88,
-    "reasoning": "[CBRE's Q1 2026 tracker](https://www.cbre.com/insights/figures/european-data-centres-figures-q1-2026) supports 74 MW of full-year Frankfurt delivery, and the under-construction [BERLIN1 first building](https://www.datacenterdynamics.com/en/news/virtus-breaks-ground-on-data-center-campus-in-berlin-germany/) contributes 14.4 MW. These disclosed construction-backed components sum to 74 + 14.4 = 88.4 MW, rounded to 88 MW; the former unsourced 12 MW allowance is removed. [Red-team adjusted 2026-08-12.]"
+    "mw": 103.0,
+    "reasoning": "The baseline is a Frankfurt-plus-Berlin commercial ledger and misses Deutsche Telekom/NVIDIA's hosted Industrial AI Cloud in Munich, which [went live in February 2026](https://www.telekom.com/en/media/media-information/archive/germany-s-first-ai-factory-for-industry-1101670). Its reported [15-20 MW facility requirement](https://www.heise.de/en/news/Telekom-data-center-to-boost-German-AI-performance-by-half-11165327.html) has a 17.5 MW midpoint; 17.5 / 1.2 PUE = 14.6 MW IT, rounded to 15, so 88 + 15 = 103 MW. [Scope-audit adjusted 2026-08-12.]"
    }
   },
   "Netherlands": {
@@ -37,7 +37,7 @@
     "reasoning": "[CleanBridge's country series](https://www.cleanbridge.co/insights/energy-transition/cleanbridge-global-data-center-market-report-2025/regional-market-overviews-gdc2025/netherlands-gdc2025/) rises from 1,550 MW in 2022 to 1,638 MW in 2023 for the whole fleet. Because the [DDA reports a declining enterprise segment and strong hyperscale growth](https://www.dutchdatacenters.nl/wp-content/uploads/lana-downloads/2023/06/SODD-23_Final_140623.pdf), nearly all of that 88 MW net increase is assigned to the in-scope fleet and rounded to 90 MW."
    },
    "2024": {
-    "mw": 68,
+    "mw": 68.0,
     "reasoning": "The same-vintage [EUDCA/Pb7 2025 tables](https://www.eudca.org/documents/content/E8VdyUuATTC_BmbNp4nhAwo89?download=0) give 857 MW colocation/scale plus 460 MW hyperscale-owned in 2023 and 925 + 460 MW in 2024. The corrected addition is (925 + 460) - (857 + 460) = 68 MW; this avoids mixing a DDA observation with a forecast. [Red-team adjusted 2026-08-12.]"
    },
    "2025": {
@@ -59,12 +59,12 @@
     "reasoning": "[CBRE's final series](https://www.cbre.com/insights/figures/european-data-centres-figures-q1-2026) records 101 MW of new Paris supply in 2023. The [EUDCA/Pb7 national snapshot](https://www.eudca.org/state-of-european-data-centres-2025) rises from EY's 566 MW end-2022 anchor to 708 MW in 2023, a 142 MW country delta; the rounded midpoint of the metro and national measures is 120 MW."
    },
    "2024": {
-    "mw": 52,
-    "reasoning": "The like-for-like [EUDCA/Pb7 national series](https://www.eudca.org/documents/content/E8VdyUuATTC_BmbNp4nhAwo89?download=0) reports 708 MW at end-2023 and 760 MW at end-2024. The corrected national net addition is 760 - 708 = 52 MW; CBRE's 107 MW Paris gross-supply flow is not averaged in because it differs in both geography and measure. [Red-team adjusted 2026-08-12.]"
+    "mw": 54.0,
+    "reasoning": "Pb7 covers commercial colocation and some owned hyperscale but not public research HPC, so Jean Zay's [1,456-H100 expansion](https://www.datacenterdynamics.com/en/news/eviden-to-upgrade-frances-jean-zay-supercomputer-with-nvidia-h100-gpus/) is additive. The [facility record](https://flopper.io/datacenter/jean-zay-supercomputer-phase-4) assigns the live partition 2.4 MW IT; 52 + 2.4 = 54.4 MW, rounded to 54 MW. [Scope-audit adjusted 2026-08-12.]"
    },
    "2025": {
-    "mw": 53,
-    "reasoning": "The updated [EUDCA/Pb7 national series](https://www.eudca.org/documents/content/ZlZXb4bRSRefaEVqya2I_Aoea?download=0) reports 760 MW at end-2024 and 813 MW at end-2025. The corrected net addition is 813 - 760 = 53 MW; CBRE's 84 MW Paris gross-supply figure is not a comparable national net-stock estimate. [Red-team adjusted 2026-08-12.]"
+    "mw": 53.0,
+    "reasoning": "The updated [EUDCA/Pb7 national series](https://www.eudca.org/documents/content/ZlZXb4bRSRefaEVqya2I_Aoea?download=0) reports 760 MW at end-2024 and 813 MW at end-2025. The corrected net addition is 813 - 760 = 53 MW; CBRE's 84 MW Paris gross-supply figure is not a comparable national net-stock estimate. [Red-team adjusted 2026-08-12.] [Scope audit: treat as a floor; rough range 53-58.]"
    },
    "2026": {
     "mw": 110.0,
@@ -74,37 +74,37 @@
   "Japan": {
    "2022": {
     "mw": 115.0,
-    "reasoning": "[Mapletree Industrial Trust's 2025/26 annual report](https://links.sgx.com/FileOpen/20260622_MIT_AR2026.ashx?App=Announcement&FileID=893762) reproduces DC Byte's annual live-colocation new-supply bars, which show approximately 70 MW in Greater Tokyo and 26 MW in Greater Osaka in 2022, or 96 MW combined. I infer 115 MW nationally by grossing up about 20% for hyperscale self-build capacity and the small regional markets omitted from the two colocation charts; the chart is already in IT MW, so no PUE conversion is applied."
+    "reasoning": "[Mapletree Industrial Trust's 2025/26 annual report](https://links.sgx.com/FileOpen/20260622_MIT_AR2026.ashx?App=Announcement&FileID=893762) reproduces DC Byte's annual live-colocation new-supply bars, which show approximately 70 MW in Greater Tokyo and 26 MW in Greater Osaka in 2022, or 96 MW combined. I infer 115 MW nationally by grossing up about 20% for hyperscale self-build capacity and the small regional markets omitted from the two colocation charts; the chart is already in IT MW, so no PUE conversion is applied. [Scope audit: treat as a floor; rough range 115-140.]"
    },
    "2023": {
     "mw": 185.0,
-    "reasoning": "[Mapletree Industrial Trust's 2025/26 annual report](https://links.sgx.com/FileOpen/20260622_MIT_AR2026.ashx?App=Announcement&FileID=893762) is the anchor: the DC Byte bars indicate roughly 115 MW of new live colocation supply in Tokyo and 37 MW in Osaka in 2023. I infer 185 MW for all Japan by applying the same approximately 20% uplift for self-build and non-Tokyo/Osaka supply to the 152 MW observed subtotal."
+    "reasoning": "[Mapletree Industrial Trust's 2025/26 annual report](https://links.sgx.com/FileOpen/20260622_MIT_AR2026.ashx?App=Announcement&FileID=893762) is the anchor: the DC Byte bars indicate roughly 115 MW of new live colocation supply in Tokyo and 37 MW in Osaka in 2023. I infer 185 MW for all Japan by applying the same approximately 20% uplift for self-build and non-Tokyo/Osaka supply to the 152 MW observed subtotal. [Scope audit: treat as a floor; rough range 185-225.]"
    },
    "2024": {
     "mw": 205.0,
-    "reasoning": "[Mapletree Industrial Trust's 2025/26 annual report](https://links.sgx.com/FileOpen/20260622_MIT_AR2026.ashx?App=Announcement&FileID=893762) shows approximately 128 MW of new live colocation IT supply in Tokyo and 42 MW in Osaka in 2024. The 205 MW national median is an inference from the 170 MW two-market subtotal, uplifted about 20% to cover self-builds and regional facilities; this is consistent with the report's broader live-capacity totals including both colocation and self-build."
+    "reasoning": "[Mapletree Industrial Trust's 2025/26 annual report](https://links.sgx.com/FileOpen/20260622_MIT_AR2026.ashx?App=Announcement&FileID=893762) shows approximately 128 MW of new live colocation IT supply in Tokyo and 42 MW in Osaka in 2024. The 205 MW national median is an inference from the 170 MW two-market subtotal, uplifted about 20% to cover self-builds and regional facilities; this is consistent with the report's broader live-capacity totals including both colocation and self-build. [Scope audit: treat as a floor; rough range 205-225.]"
    },
    "2025": {
-    "mw": 300.0,
-    "reasoning": "[Mapletree Industrial Trust's 2025/26 annual report](https://links.sgx.com/FileOpen/20260622_MIT_AR2026.ashx?App=Announcement&FileID=893762) reports year-end live IT capacity of 1,455 MW in Tokyo and 373 MW in Osaka, while its DC Byte bars show about 202 MW and 47 MW of 2025 colocation new supply respectively. I infer 300 MW nationally by uplifting the 249 MW tracked subtotal about 20% for self-build and regional additions; this is a net operational-capacity estimate, not take-up."
+    "mw": 310.0,
+    "reasoning": "The baseline uplifted colo-only bars, but DC Byte supplies a same-scope all-DC stock series that already includes self-build. Tokyo plus Osaka rose from 1,192 + 326 = 1,518 MW in the [2024/25 report](https://investor.mapletreeindustrialtrust.com/newsroom/20250625_073214_ME8U_UQG8RIVWFVIRDJZO.1.pdf) to 1,455 + 373 = 1,828 MW in the [2025/26 report](https://links.sgx.com/FileOpen/20260622_MIT_AR2026.ashx?App=Announcement&FileID=893762), so the corrected addition is 1,828 - 1,518 = 310 MW. [Scope-audit adjusted 2026-08-12.]"
    },
    "2026": {
-    "mw": 248,
-    "reasoning": "[Cushman & Wakefield's H1 update](https://digital.cushmanwakefield.com/apacdatacentreupdateh12026-07-2026-apac-regional-en-content-datacentres) reports 218 MW of operational additions in Greater Tokyo, while [NTT DATA opened 30 MW IT in Kyoto](https://www.nttdata.com/global/en/news/press-release/2026/april/040900), giving 218 + 30 = 248 MW. The former 40 MW Tokyo component is excluded because the newer [developer schedule](https://www.gawcapital.com/ja/news/pressrelease-ja/gaw-capital-and-dayone-break-ground-on-phase-one-building-within-gaw-capitals-tokyo-data-center-campus-2/) identifies only an 18 MW first phase whose core-and-shell completion is due in mid-2027. [Red-team adjusted 2026-08-12.]"
+    "mw": 479.0,
+    "reasoning": "The baseline contains Greater Tokyo plus NTT Kyoto but omits KDDI's Osaka-Sakai AI center, which [entered operation in January 2026](https://newsroom.kddi.com/english/news/detail/kddi_nr-916_4323.html). Its [300 MW facility intake](https://cloud.watch.impress.co.jp/docs/news/2080218.html) converts at PUE 1.3 to 230.8 MW IT, so 248 + 230.8 = 478.8 MW, rounded to 479 MW. [Scope-audit adjusted 2026-08-12.]"
    }
   },
   "South Korea": {
    "2022": {
     "mw": 35.0,
-    "reasoning": "[Structure Research's Korea report](https://www.edgeconnex.com/wp-content/uploads/2023/07/Edgeconnex_Korea-Report_FINAL.pdf) is the anchor and charts current built-out capacity rising from 461.3 MW in 2021 to 496.3 MW in 2022. The 35 MW difference is used directly as net operational IT-capacity addition; its inventory covers the commercial/hyperscale market rather than enterprise server rooms."
+    "reasoning": "[Structure Research's Korea report](https://www.edgeconnex.com/wp-content/uploads/2023/07/Edgeconnex_Korea-Report_FINAL.pdf) is the anchor and charts current built-out capacity rising from 461.3 MW in 2021 to 496.3 MW in 2022. The 35 MW difference is used directly as net operational IT-capacity addition; its inventory covers the commercial/hyperscale market rather than enterprise server rooms. [Scope audit: treat as a floor; rough range 35-70.]"
    },
    "2023": {
     "mw": 200.0,
     "reasoning": "[Cushman & Wakefield's H1 2023 MarketBeat](https://assets.cushmanwakefield.com/-/media/cw/marketbeat-pdfs/2023/q3/apac-and-gc/korea--data-center-mb-1h-2023_eng.pdf?rev=22ba345ad21c4eacbcef32b00139120d) places end-2022 Greater Seoul at 330 MW and 85% of national capacity, implying about 388 MW nationally. Its [Q4 2023 APAC table](https://assets.cushmanwakefield.com/-/media/cw/apac/greater-china/insights/2024-media-files/china-data-centers-report-2024.pdf?rev=c8e51c509bfd47c4b94bdcb23fb92193) reports 591 MW operational for South Korea. Differencing those snapshots gives 203 MW, rounded to a 200 MW median because the metro share and coverage changed during the year."
    },
    "2024": {
-    "mw": 120.0,
-    "reasoning": "[Cushman & Wakefield's H2 2024 update](https://cushwake.cld.bz/asiapacificdatacentreupdateh22024-02-2025-apac-regional-en-content-datacentres/16/) is the anchor and shows Greater Seoul at 520 MW operational at year-end; its [H1 report](https://cushwake.cld.bz/apac-dc-h1-2024-update/16/) says Seoul represented 73% of country capacity. I infer a national year-end snapshot of about 712 MW and difference it from C&W's 591 MW Q4-2023 country snapshot, yielding 121 MW and a rounded 120 MW median."
+    "mw": 151.0,
+    "reasoning": "C&W includes hyperscale cloud, colo, edge, and telco but excludes captive ICT, so Kakao's first independent in-house center is outside the anchor; Kakao confirms [January 2024 operation](https://www.kakaocorp.com/page/detail/11140). Its [40,000 kW supply and PUE at or below 1.3](https://tech.kakao.com/posts/673) imply 40 / 1.3 = 30.8 MW IT, and 120 + 30.8 = 150.8 MW, rounded to 151 MW. [Scope-audit adjusted 2026-08-12.]"
    },
    "2025": {
     "mw": 105.0,
@@ -133,8 +133,8 @@
     "reasoning": "[Taiwan's National Center for High-performance Computing](https://www.nchc.org.tw/Event/EventDetail/98?mid=63) is the main anchor and states that the 15 MW National Grid Cloud Computing Center opened in December 2025. I treat that as facility power and convert it to 11.5 MW IT at PUE 1.3; [Cushman & Wakefield's H2 2025 APAC update](https://digital.cushmanwakefield.com/apacdatacentreupdateh22025-02-2026-apac-regional-en-content-datacentres) shows Taipei operational IT capacity increasing 3 MW. Adding 11.5+3 gives 14.5 MW, rounded to a 15 MW national median while avoiding double-counting cloud regions housed in existing facilities."
    },
    "2026": {
-    "mw": 44.0,
-    "reasoning": "[MediaTek](https://www.mediatek.com/zh-tw/press-room/mediatek-unveils-rd-data-center-in-tongluo-to-power-ai-era-computing?hs_amp=true) opened its Tongluo R&D data center in May 2026, and [CNA](https://www.cna.com.tw/news/afe/202605070170.aspx?topic=3407) reports 15 MW for phase one; using MediaTek's disclosed PUE 1.1 converts this to 13.6 MW IT. [Keppel](https://www.keppel.com/media/keppel-positions-for-ai-and-semiconductor-boom-with-new-80mw-data-centre-campus-project-in-taiwan-/) confirms its contracted Taiwan campus phase one was under construction for 2026 service, while [CNA](https://www.cna.com.tw/news/afe/202503260128.aspx) identifies that phase as 30 MW. The 44 MW full-year estimate rounds 13.6 MW actual plus 30 MW construction-backed completion; C&W still classed the Taipei project as under construction at H1, so timing remains uncertain and unbuilt proposals are excluded."
+    "mw": 52.0,
+    "reasoning": "The baseline already includes MediaTek and Keppel but omits the first construction-backed Foxconn-NVIDIA Kaohsiung deployment. Foxconn identifies [64 GB200 NVL72 racks due in 2026](https://www.foxconn.com/en-us/press-center/press-releases/latest-news/1350), and NVIDIA specifies [about 120 kW per rack](https://docs.nvidia.com/dgx/dgxgb200-user-guide/hardware.html); 64 x 0.120 = 7.68 MW IT and 44 + 7.68 = 51.68 MW, rounded to 52 MW. [Scope-audit adjusted 2026-08-12.]"
    }
   },
   "China": {
@@ -147,11 +147,11 @@
     "reasoning": "[MIIT's year-end 2023 release](https://www.miit.gov.cn/xwdt/gxdt/ldhd/art/2024/art_7c3695b480144be9821514c10133c7b5.html) anchors the stock at more than 8.1 million in-use standard racks, against [6.5 million for 2022](https://www.miit.gov.cn/threestrategy/dtzx/zhzx/art/2023/art_be2ad4c261014102a88d3f45f9b32060.html). The inferred net addition is 1.6 million standard racks x [2.5 kW per rack](https://wap.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2022/art_30aceeaef88a4dbab979305f9f9193b8.html) = 4,000 MW IT; no PUE conversion is needed because the rack convention is already IT power."
    },
    "2024": {
-    "mw": 2250,
+    "mw": 2250.0,
     "reasoning": "The latest [National Data Administration retrospective series](https://www.nda.gov.cn/sjj/ywpd/sjzg/0608/ff808081-9e81e847-019e-a7020a06-00a9.pdf#page=16) reports 8.1 million standard racks at end-2023 and 9.0 million at end-2024. Applying the official [2.5 kW standard-rack convention](https://www.nda.gov.cn/sjj/ywpd/szkjyjcss/0608/ff808081-96b465bf-0197-4f0dae39-0700.pdf) gives (9.0 - 8.1) million x 2.5 kW = 2,250 MW IT; this same-vintage series supersedes the earlier 8.8-million headline. [Red-team adjusted 2026-08-12.]"
    },
    "2025": {
-    "mw": 11825,
+    "mw": 11825.0,
     "reasoning": "The [National Data Administration retrospective series](https://www.nda.gov.cn/sjj/ywpd/sjzg/0608/ff808081-9e81e847-019e-a7020a06-00a9.pdf#page=16) reports 9.0 million standard racks at end-2024 and 13.73 million at end-2025. On the official [2.5 kW standard-rack convention](https://www.nda.gov.cn/sjj/ywpd/szkjyjcss/0608/ff808081-96b465bf-0197-4f0dae39-0700.pdf), (13.73 - 9.0) million x 2.5 kW = 11,825 MW IT; using 9.0 million avoids splicing the final 2025 stock to the superseded 8.8-million baseline. [Red-team adjusted 2026-08-12.]"
    },
    "2026": {
@@ -173,18 +173,18 @@
     "reasoning": "[Savills' H1 2026 UK capacity review](https://www.savills.co.uk/insight-and-opinion/savills-news/391549/uk-data-centre-take-up-continues-to-concentrate-on-london-as-lack-of-power-capacity-intensifies) is the direct national anchor and reports 191 MW of IT capacity delivered in the UK in 2024. This is consistent in direction with [DC Byte](https://www.keppeldcreit.com/en/file/investor-relations/publications/annual-report/kdcr-ar2024.pdf), which records 96 MW added in London and 28 MW in Cardiff before other UK markets. I therefore use 191 MW without a PUE or geographic conversion."
    },
    "2025": {
-    "mw": 231.0,
-    "reasoning": "[Savills' H1 2026 UK capacity review](https://www.savills.co.uk/insight-and-opinion/savills-news/391549/uk-data-centre-take-up-continues-to-concentrate-on-london-as-lack-of-power-capacity-intensifies) is the direct national anchor and reports 231 MW of IT capacity delivered in 2025. [DC Byte](https://www.keppeldcreit.com/en/file/investor-relations/publications/annual-report/kdcr-ar2025.pdf) independently reports 175 MW of London growth and Cardiff live supply rising from 104 MW in 2024 to 124 MW in 2025, leaving a plausible 36 MW for other UK clusters. I use the direct 231 MW national observation, with no conversion."
+    "mw": 324.0,
+    "reasoning": "The Savills commercial-building anchor misses owner-occupied and sovereign compute, so two independently live facilities are additive: [Google Waltham Cross at 88 MW IT](https://epoch.ai/data/ai-data-centers/directory/google-waltham-cross) and [Isambard-AI at 5 MW](https://www.bristol.ac.uk/research/centres/bristol-supercomputing/articles/2025/isambard-ai---12-month-journey.html). The corrected total is 231 + 88 + 5 = 324 MW; leased CoreWeave deployments remain inside commercial supply and are not added. [Scope-audit adjusted 2026-08-12.]"
    },
    "2026": {
     "mw": 114.0,
-    "reasoning": "[Savills' H1 2026 UK review](https://www.savills.co.uk/insight-and-opinion/savills-news/391549/uk-data-centre-take-up-continues-to-concentrate-on-london-as-lack-of-power-capacity-intensifies) is the anchor: 48 MW was delivered in Q1 and only 66 MW of the 242 MW under construction was scheduled to complete in Q2-Q4, implying 114 MW for full-year 2026. [CBRE had forecast 180 MW for London](https://mediaassets.cbre.com/-/media/project/cbre/shared-site/insights/books/uk-real-estate-market-outlook-2026/uk-real-estate-market-outlook-2026.pdf?rev=f3b788e086c7425eac34aafc85a331be), but I do not include capacity outside Savills' current delivery window. Thus 114 MW is an actual-plus-construction estimate, not an announcements-based pipeline figure."
+    "reasoning": "[Savills' H1 2026 UK review](https://www.savills.co.uk/insight-and-opinion/savills-news/391549/uk-data-centre-take-up-continues-to-concentrate-on-london-as-lack-of-power-capacity-intensifies) is the anchor: 48 MW was delivered in Q1 and only 66 MW of the 242 MW under construction was scheduled to complete in Q2-Q4, implying 114 MW for full-year 2026. [CBRE had forecast 180 MW for London](https://mediaassets.cbre.com/-/media/project/cbre/shared-site/insights/books/uk-real-estate-market-outlook-2026/uk-real-estate-market-outlook-2026.pdf?rev=f3b788e086c7425eac34aafc85a331be), but I do not include capacity outside Savills' current delivery window. Thus 114 MW is an actual-plus-construction estimate, not an announcements-based pipeline figure. [Scope audit: treat as a floor; rough range 114-143.]"
    }
   },
   "Ireland": {
    "2022": {
-    "mw": 30,
-    "reasoning": "A contemporaneous [DC Byte/Danseb review](https://www.keppeldcreit.com/en/file/investor-relations/publications/annual-report/kdcr-ar2022.pdf) directly reports 29.5 MW of Dublin supply added in 2022, and KPMG reports that Greater Dublin held 99% of Irish IT capacity. The national median is therefore 29.5 MW rounded to 30 MW, rather than assigning half of KPMG's rounded 2020-2022 stock increase to 2022; [CBRE's 34 MW leased-supply figure](https://mediaassets.cbre.com/-/media/cbre/countrygermany/data-centre/2022-q4-cbre-europe-data-centres.pdf?rev=81461b57d40d42aa8bba18e88db89095) provides a close cross-check. [Red-team adjusted 2026-08-12.]"
+    "mw": 150.0,
+    "reasoning": "The 30 MW Danseb reading closely tracks leased colocation and misses the broad hyperscale fleet, so the round-1 correction is reinstated using KPMG/Omdia's all-scope operational series. That [government-sponsored series](https://enterprise.gov.ie/en/publications/publication-files/the-value-of-data-centres-to-ireland.pdf) rises from about 1.0 GW in 2020 to 1.3 GW in 2022; annualizing the rounded 300 MW two-year increase gives 300 / 2 = 150 MW for 2022. [Scope-audit adjusted 2026-08-12.]"
    },
    "2023": {
     "mw": 110.0,
@@ -249,24 +249,24 @@
   },
   "Spain": {
    "2022": {
-    "mw": 37.0,
-    "reasoning": "The anchor is [SpainDC's national series as reported by Cinco D\u00edas](https://cincodias.elpais.com/companias/2024-05-24/la-industria-de-los-centros-de-datos-en-espana-reclama-mas-acceso-a-la-energia-habra-para-todos.html), which gives 150 MW installed in 2022; SpainDC's prior report put 2021 at [113 MW](https://www.datacentermarket.es/tendencias-ti/los-centros-de-datos-eclosionan-en-madrid-que-se-convierte-en-punto-clave-de-interconexion/). I infer 37 MW as the snapshot difference; both figures are installed IT capacity, so no PUE adjustment is made."
+    "mw": 75.0,
+    "reasoning": "The legacy SpainDC series was colocation-only and explicitly omitted Amazon-owned infrastructure, while the [AWS Spain region opened three Aragon sites in November 2022](https://aws.amazon.com/blogs/aws/now-open-aws-region-in-spain/). The later SpainDC all-scope regional table assigns Aragon 38 MW live, so 37 MW colo + 38 MW AWS-owned = 75 MW. [Scope-audit adjusted 2026-08-12.]"
    },
    "2023": {
-    "mw": 50.0,
-    "reasoning": "The anchor is [SpainDC's national installed-capacity series](https://cincodias.elpais.com/companias/2024-05-24/la-industria-de-los-centros-de-datos-en-espana-reclama-mas-acceso-a-la-energia-habra-para-todos.html), which moves from 150 MW in 2022 to 200 MW at end-2023. The 50 MW estimate is the direct difference and is independently directionally supported by [Colliers' 2023 opening survey](https://www.colliers.com/en-es/research/snapshot-data-center-iberian-region-fy-2023), though Colliers' metro-only perimeter is not substituted for the national anchor."
+    "mw": 37.0,
+    "reasoning": "The legacy anchor misassigned later recognition of AWS capacity to 2023 even though the owned sites were already live in 2022. The reconstructed end-2022 all-scope stock is 113 + 37 + 38 = 188 MW, and the [harmonized SpainDC/Pb7 series](https://spaindc.com/wp-content/uploads/2025/09/SpainDC-Informe-Anual-2025_.pdf) gives 225 MW at end-2023, so 225 - 188 = 37 MW. [Scope-audit adjusted 2026-08-12.]"
    },
    "2024": {
-    "mw": 114,
-    "reasoning": "The revised [SpainDC 2024 edition](https://spaindc.com/wp-content/uploads/2025/06/Report-on-the-Data-Centre-Industry-in-Spain_2024-post2027.pdf) gives 147 MW in Madrid for 2023, equal to 61% of Spain, implying 147 / 0.61 = 241.0 MW nationally. Against the report's 355 MW national 2024 stock, the same-edition addition is 355 - 241.0 = 114.0 MW, rounded to 114 MW. [Red-team adjusted 2026-08-12.]"
+    "mw": 130.0,
+    "reasoning": "The harmonized SpainDC/Pb7 series includes colocation plus owned hyperscale and therefore supplies a like-for-like all-scope stock delta. It reports [225 MW at end-2023 and 355 MW at end-2024](https://spaindc.com/wp-content/uploads/2025/09/SpainDC-Informe-Anual-2025_.pdf), so the corrected addition is 355 - 225 = 130 MW; Microsoft's Madrid sites are already in that owned-capacity endpoint. [Scope-audit adjusted 2026-08-12.]"
    },
    "2025": {
     "mw": 84.0,
     "reasoning": "The anchor is [SpainDC's 2025 annual report release](https://spaindc.com/los-centros-de-datos-podrian-movilizar-66-900-millones-de-euros-en-espana-hasta-2030/), which states that commercial colocation and hyperscale IT capacity reached 439 MW, up from 355 MW in 2024. The 84 MW estimate is the exact snapshot difference, with no facility-power conversion."
    },
    "2026": {
-    "mw": 66,
-    "reasoning": "The July [CBRE operational snapshot reported by Cinco Dias](https://cincodias.elpais.com/companias/2026-07-16/espana-y-portugal-viven-una-explosion-de-anuncios-de-nuevos-centros-de-datos-que-multiplican-por-18-la-capacidad-actual.html) is 499 MW, versus SpainDC's 439 MW end-2025 stock, giving a conservative 499 - 439 = 60 MW actual-to-date estimate despite the publisher change. The [7.5 MW NxN facility due in September](https://observatorioinmobiliario.es/noticias/tecnologia/nxn-abrir%C3%A1-en-madrid-su-primer-centro-de-datos-operativo-en-espa%C3%B1a/) converts to 7.5 / 1.3 = 5.8 MW IT at the midpoint PUE, so 60 + 5.8 = 65.8 MW, rounded to 66 MW. No capacity is assigned to Madrid 1 because the cited ACS slide supplies a 140 MW site-development total but no 20 MW first-phase figure; the original 20 MW input was the slide's page number. [Red-team adjusted 2026-08-12.]"
+    "mw": 187.0,
+    "reasoning": "The baseline is only a July actual plus one delivery, not a full-year estimate, so it is replaced with SpainDC's all-scope 2026 scenarios. Their endpoints are 589, 626, and 632 MW, whose median is 626; against the [439 MW end-2025 stock](https://spaindc.com/wp-content/uploads/2025/09/SpainDC-Informe-Anual-2025_.pdf), 626 - 439 = 187 MW, already including AWS and Microsoft owned expansions. [Scope-audit adjusted 2026-08-12.]"
    }
   },
   "Italy": {
@@ -283,7 +283,7 @@
     "reasoning": "The anchor is the [Politecnico di Milano Data Center Observatory](https://www.osservatori.net/comunicato/data-center/data-center-in-italia-2024/), which reports 513 MW IT in operational data halls in 2024. I subtract the Observatory's 430 MW 2023 snapshot to obtain 83 MW; the published 17% growth rate is rounded and is therefore not used to reverse-engineer the prior level."
    },
    "2025": {
-    "mw": 110,
+    "mw": 110.0,
     "reasoning": "On the definition-compliant colocation-plus-hyperscale perimeter, [EUDCA/Pb7 2026](https://www.eudca.org/documents/content/ZlZXb4bRSRefaEVqya2I_Aoea?download=0) gives 267 + 20 = 287 MW in 2024 and 363 + 34 = 397 MW in 2025. The corrected net addition is 397 - 287 = 110 MW, replacing the broader Politecnico series that may include on-prem infrastructure. [Red-team adjusted 2026-08-12.]"
    },
    "2026": {
@@ -293,24 +293,24 @@
   },
   "India": {
    "2022": {
-    "mw": 150.0,
-    "reasoning": "[JLL's 2022 year-end update](https://www.jll.com/en-in/newsroom/india-data-centre-industry) reports 722 MW operational at year-end versus 551 MW at year-end 2021, an explicit 171 MW addition. As an inference, I take the midpoint with [Cushman & Wakefield's colocation series](https://assets.cushmanwakefield.com/-/media/cw/apac/india/insights/outlook-2024-report.pdf?rev=40694bccc2094ead93509534937f749d) (656 minus 530 = 126 MW) and round 148.5 MW to 150 MW; both anchors are IT-load capacity."
+    "mw": 232.0,
+    "reasoning": "Both the JLL and C&W anchors measure installed colocation capacity, so AWS's captive Hyderabad region is outside the baseline. AWS confirms the [November 2022 launch](https://press.aboutamazon.com/in/2022/11/aws-launches-second-infrastructure-region-in-india), and [C&W reports 82 MW operational](https://assets.cushmanwakefield.com/-/media/cw/apac/india/insights/indiadatacentreupdateh12025v4.pdf) across its three South Hyderabad data centers; 150 + 82 = 232 MW. [Scope-audit adjusted 2026-08-12.]"
    },
    "2023": {
     "mw": 195.0,
-    "reasoning": "[Cushman & Wakefield](https://www.cushmanwakefield.com/en/india/news/2024/07/potential-for-5x-capacity-expansion-to-fuel-digital-transformation) reports 258 MW built during 2023 and 977 MW operational across India's top seven cities at year-end. As an inference, I use the midpoint with [JLL's](https://www.jll.com/en-in/insights/booming-data-centre-industry-in-india-a-golden-opportunity) 854-minus-722 MW stock delta (132 MW), yielding 195 MW; the wide source spread reflects different facility and city coverage."
+    "reasoning": "[Cushman & Wakefield](https://www.cushmanwakefield.com/en/india/news/2024/07/potential-for-5x-capacity-expansion-to-fuel-digital-transformation) reports 258 MW built during 2023 and 977 MW operational across India's top seven cities at year-end. As an inference, I use the midpoint with [JLL's](https://www.jll.com/en-in/insights/booming-data-centre-industry-in-india-a-golden-opportunity) 854-minus-722 MW stock delta (132 MW), yielding 195 MW; the wide source spread reflects different facility and city coverage. [Scope audit: treat as a floor; rough range 195-215.]"
    },
    "2024": {
-    "mw": 225,
-    "reasoning": "[Cushman & Wakefield's retrospective](https://sch.cushmanwakefield.com/api/public/content/india-outlook-2026) implies 1,480 - 228 - 977 = 275 MW added in 2024. [CBRE's later retrospective](https://mktgdocs.cbre.com/2299/40cd9723-5eca-40ce-8324-5cec0c97b91a-549775547/India_Alternate_Sectors_Outloo.pdf) says 2025's 440 MW was 2.6 times 2024, implying 440 / 2.6 = 169.2 MW; the midpoint is (275 + 169.2) / 2 = 222.1 MW, rounded to a 225 MW median. [Red-team adjusted 2026-08-12.]"
+    "mw": 225.0,
+    "reasoning": "[Cushman & Wakefield's retrospective](https://sch.cushmanwakefield.com/api/public/content/india-outlook-2026) implies 1,480 - 228 - 977 = 275 MW added in 2024. [CBRE's later retrospective](https://mktgdocs.cbre.com/2299/40cd9723-5eca-40ce-8324-5cec0c97b91a-549775547/India_Alternate_Sectors_Outloo.pdf) says 2025's 440 MW was 2.6 times 2024, implying 440 / 2.6 = 169.2 MW; the midpoint is (275 + 169.2) / 2 = 222.1 MW, rounded to a 225 MW median. [Red-team adjusted 2026-08-12.] [Scope audit: treat as a floor; rough range 225-250.]"
    },
    "2025": {
     "mw": 440.0,
-    "reasoning": "[CBRE's retrospective 2026 outlook](https://www.cbre.co.in/insights/reports/india-alternate-sectors-outlook-2026) reports that live stock exceeded 1,700 MW at end-2025 after a record 440 MW of new supply, directly anchoring the estimate. This broader all-facility figure is preferred to [Cushman & Wakefield's](https://sch.cushmanwakefield.com/api/public/content/india-outlook-2026) 228 MW colocation-only addition because the requested scope also includes hyperscale self-builds; no inference beyond matching scope is made."
+    "reasoning": "[CBRE's retrospective 2026 outlook](https://www.cbre.co.in/insights/reports/india-alternate-sectors-outlook-2026) reports that live stock exceeded 1,700 MW at end-2025 after a record 440 MW of new supply, directly anchoring the estimate. This broader all-facility figure is preferred to [Cushman & Wakefield's](https://sch.cushmanwakefield.com/api/public/content/india-outlook-2026) 228 MW colocation-only addition because the requested scope also includes hyperscale self-builds; no inference beyond matching scope is made. [Scope audit: treat as a floor; rough range 440-485.]"
    },
    "2026": {
-    "mw": 360.0,
-    "reasoning": "[Cushman & Wakefield's 2026 outlook](https://sch.cushmanwakefield.com/api/public/content/india-outlook-2026) expects 220 MW of colocation additions from projects already at advanced stages of construction. As an inference for the broader definition, I use the midpoint of that construction-backed figure and [CBRE's broader 500 MW 2026 supply forecast](https://www.cbre.co.in/insights/reports/india-alternate-sectors-outlook-2026), yielding 360 MW after rounding; speculative announcements without construction evidence are excluded."
+    "mw": 620.0,
+    "reasoning": "The old value averaged a 220 MW colo-only C&W forecast with a broader CBRE view; the corrected all-scope starting point is CBRE's 500 MW forecast. Add only Reliance's separately identified, construction-backed [120 MW Jamnagar tranche due by year-end](https://www.business-standard.com/companies/news/reliance-intelligence-bets-big-on-ai-with-jamnagar-compute-platform-126061901060_1.html), giving 500 + 120 = 620 MW; Microsoft is not added because it may already overlap CBRE. [Scope-audit adjusted 2026-08-12.]"
    }
   },
   "Australia": {
@@ -345,12 +345,12 @@
     "reasoning": "Anchor: [Knight Frank/DC Byte](https://content.knightfrank.com/research/2095/documents/en/data-centres-2023-the-apac-report-11107.pdf) reports that Johor live IT capacity rose 341% in 2023 following 107 MW and 42.66 MW completions by Bridge Data Centres and GDS. I use those documented 149.66 MW as the core and add about 5 MW for the rest of Malaysia; this is an inference because survey cut-off dates differ."
    },
    "2024": {
-    "mw": 316,
+    "mw": 316.0,
     "reasoning": "[Cushman & Wakefield reported 189 MW nationally at end-2023](https://www.cushmanwakefield.com/en/japan/insights/apac-data-centre-update-2023h2), while the cited [year-end 2024 inventory](https://www.datavault.com.my/secured/amr/DC%20Whitepaper%20Report%202H2024.pdf) reports 504.8 MW of live IT capacity. The best sourced correction is 504.8 - 189 = 315.8 MW, rounded to 316 MW; although the publishers differ, the observed 189 MW baseline is better supported than the original inferred 280 MW. [Red-team adjusted 2026-08-12.]"
    },
    "2025": {
     "mw": 515.0,
-    "reasoning": "Anchor: [Cushman & Wakefield's H2-2025 table](https://www.cushmanwakefield.com/en/singapore/news/2026/03/apac-data-centre-development-pipeline-hits-record-in-2025) puts Johor operational IT capacity at 897 MW versus 401 MW in its H2-2024 survey. The 496 MW Johor delta plus approximately 20 MW from the [commercially operational Klang Valley and Iskandar Puteri expansions](https://www.mida.gov.my/mida-news/second-phase-of-cyberjaya-and-iskandar-puteri-data-centres-to-achieve-commercial-ops-in-3q-tm/) yields a national median of 515 MW."
+    "reasoning": "Anchor: [Cushman & Wakefield's H2-2025 table](https://www.cushmanwakefield.com/en/singapore/news/2026/03/apac-data-centre-development-pipeline-hits-record-in-2025) puts Johor operational IT capacity at 897 MW versus 401 MW in its H2-2024 survey. The 496 MW Johor delta plus approximately 20 MW from the [commercially operational Klang Valley and Iskandar Puteri expansions](https://www.mida.gov.my/mida-news/second-phase-of-cyberjaya-and-iskandar-puteri-data-centres-to-achieve-commercial-ops-in-3q-tm/) yields a national median of 515 MW. [Scope audit: treat as a floor; rough range 535-615.]"
    },
    "2026": {
     "mw": 1100.0,
@@ -360,7 +360,7 @@
   "Singapore": {
    "2022": {
     "mw": 80.0,
-    "reasoning": "Anchor: [Cushman & Wakefield's H2-2022 inventory](https://cushwake.cld.bz/apac-dc-h2-2022-update/1) records 876 MW in operation and identifies Google's third Singapore data centre as an approximately 80 MW IT-load opening that year. I therefore use 80 MW as net additions, with smaller openings broadly offset by survey revisions and no subtraction for merely planned capacity."
+    "reasoning": "Anchor: [Cushman & Wakefield's H2-2022 inventory](https://cushwake.cld.bz/apac-dc-h2-2022-update/1) records 876 MW in operation and identifies Google's third Singapore data centre as an approximately 80 MW IT-load opening that year. I therefore use 80 MW as net additions, with smaller openings broadly offset by survey revisions and no subtraction for merely planned capacity. [Scope audit: treat as a floor; rough range 100-206.]"
    },
    "2023": {
     "mw": 86.0,
@@ -390,15 +390,15 @@
    },
    "2024": {
     "mw": 74.0,
-    "reasoning": "Anchor: [Cushman & Wakefield's H2-2024 inventory](https://www.slideshare.net/slideshow/1-cushwake-asia-pacific-dc-update-h2-2024-report1-pdf/276490907) reports 278 MW operational in Greater Jakarta, versus the inferred 204 MW end-2023 base. The 74 MW metro delta is used as the national median because the firm's H1 report says Jakarta represented more than 90% of Indonesia's capacity; documented H1 launches included Bitera's 20 MW and DCI's 24 MW phase."
+    "reasoning": "Anchor: [Cushman & Wakefield's H2-2024 inventory](https://www.slideshare.net/slideshow/1-cushwake-asia-pacific-dc-update-h2-2024-report1-pdf/276490907) reports 278 MW operational in Greater Jakarta, versus the inferred 204 MW end-2023 base. The 74 MW metro delta is used as the national median because the firm's H1 report says Jakarta represented more than 90% of Indonesia's capacity; documented H1 launches included Bitera's 20 MW and DCI's 24 MW phase. [Scope audit: treat as a floor; rough range 74-107.]"
    },
    "2025": {
-    "mw": 44.0,
-    "reasoning": "Anchor: [Cushman & Wakefield's H2-2025 table](https://www.cushmanwakefield.com/en/singapore/news/2026/03/apac-data-centre-development-pipeline-hits-record-in-2025) reports 322 MW operational in Greater Jakarta, while its [H1-2025 snapshot](https://cushwake.cld.bz/asiapacificdatacentreupdateh12025-08-2025-apac-regional-en-content-datacentres/20/) was 278 MW. The 44 MW H2 increase is the national median: no material H1 change was recorded, and small sites outside Jakarta are within rounding."
+    "mw": 77.0,
+    "reasoning": "The C&W baseline is Greater Jakarta and therefore misses Oracle's Batam region hosted at DayOne. Oracle dates the [region's operation to 15 May 2025](https://docs.oracle.com/en-us/iaas/releasenotes/oci/new-region-batam.htm), while the [Epoch facility timeline](https://epoch.ai/data/ai-data-centers/directory/oracle-batam) assigns the first two buildings 33 MW IT; 44 + 33 = 77 MW. [Scope-audit adjusted 2026-08-12.]"
    },
    "2026": {
-    "mw": 43,
-    "reasoning": "The [Knight Frank Q1 inventory](https://www.knightfrank.co.uk/site-assets/research/report-pdfs/data-centres/data-centre-atlas-2026.pdf) gives a 22 MW actual-to-date increase over the 322 MW end-2025 stock. Adding only the named 2026 completions\u2014[NTT JKT2A at 12 MW critical IT](https://services.global.ntt/en-in/newsroom/ntt-expands-network-data-center-for-generative-ai-platform-in-indonesia) and [DCI E2 at 9 MW](https://m.antaranews.com/amp/berita/5500918/dci-indonesia-siap-operasikan-pusat-data-e2-surabaya-pada-semester-I)\u2014gives 22 + 12 + 9 = 43 MW; the uncited 27 MW residual is removed. [Red-team adjusted 2026-08-12.]"
+    "mw": 105.0,
+    "reasoning": "The old value mixed non-comparable vendor stocks and an unconfirmed NTT completion, so it is replaced with a national named-capacity ledger. The ledger is PDN-1 15 MW after facility-to-IT conversion, [STT Jakarta 2 at 24 MW](https://www.sttelemediagdc.com/id-en/newsroom/stt-gdc-accelerates-jakarta-campus-expansion-power-indonesia-ai-and-digital-ambitions), DCI E2 9 MW, [Oracle/DayOne Batam](https://epoch.ai/data/ai-data-centers/directory/oracle-batam) expansion 39 MW, and NeutraDC Nxera Batam 18 MW: 15 + 24 + 9 + 39 + 18 = 105 MW. [Scope-audit adjusted 2026-08-12.]"
    }
   },
   "United Arab Emirates": {
@@ -407,11 +407,11 @@
     "reasoning": "[GDCA's Q3-2022 UAE market report](https://gulfdca.com/wp-content/uploads/2022/04/GDCA_UAE-Market-Report.pdf) is the anchor: it counted 164 MW of operational colocation capacity before the late-2022 cloud-region ramp. The 26 MW is an inference that reconciles that partial-scope snapshot and the [AWS UAE Region's three-AZ launch](https://aws.amazon.com/blogs/aws/now-open-aws-region-in-the-united-arab-emirates-uae/) with the approximately 204 MW start-2023 live total implied by Knight Frank/DC Byte."
    },
    "2023": {
-    "mw": 36,
+    "mw": 36.0,
     "reasoning": "[Knight Frank/DC Byte's Q3-2023 report](https://content.knightfrank.com/research/2788/documents/en/data-centres-the-mena-report-q3-2023-10794.pdf) implies 204.1 MW live at January 2023, and its [H1-2024 report](https://content.knightfrank.com/research/2912/documents/en/data-centres-the-emea-report-q2-2024-11624.pdf) implies 240.2 MW at January 2024. Matching calendar boundaries gives 240.2 - 204.1 = 36.1 MW, rounded to 36 MW. [Red-team adjusted 2026-08-12.]"
    },
    "2024": {
-    "mw": 117,
+    "mw": 117.0,
     "reasoning": "The [Knight Frank/DC Byte H1-2024 report](https://content.knightfrank.com/research/2912/documents/en/data-centres-the-emea-report-q2-2024-11624.pdf) implies a 240.2 MW January 2024 opening stock, while [Knight Frank's later delivery statement](https://www.knightfrank.ae/newsroom/article/2025/10/emea-data-centres-report-october-2025) implies approximately 356.8 MW at the opening of 2025. The calendar-year addition is 356.8 - 240.2 = 116.6 MW, rounded to 117 MW; this removes late-2023 capacity from the 2024 calculation. [Red-team adjusted 2026-08-12.]"
    },
    "2025": {
@@ -419,8 +419,8 @@
     "reasoning": "[Knight Frank](https://www.knightfrank.ae/newsroom/article/2025/10/emea-data-centres-report-october-2025) is the anchor: it reported more than 376 MW live after 19.2 MW came online during 2025. The 47 MW is the inferred full-year change from that report's approximately 356.8 MW opening base to the [2026 Data Centre Atlas](https://www.knightfrank.co.uk/site-assets/research/report-pdfs/data-centres/data-centre-atlas-2026.pdf) year-end built-IT snapshot of 404 MW."
    },
    "2026": {
-    "mw": 225.0,
-    "reasoning": "[Knight Frank's 2026 Data Centre Atlas](https://www.knightfrank.co.uk/site-assets/research/report-pdfs/data-centres/data-centre-atlas-2026.pdf) is the anchor: it starts from 404 MW built IT and identifies 333 MW under construction plus the first 200 MW of Stargate UAE due in Q4. The 225 MW median is a projection of that 200 MW construction-backed phase plus about 25 MW from other active builds; [WAM confirms Stargate construction is advancing](https://www.wam.ae/en/article/bm8fieb-g42-advances-construction-stargate-uae), and announced projects without site work are excluded."
+    "mw": 364.0,
+    "reasoning": "The prior value was a partial project scenario, while Knight Frank/DC Byte is an all-scope live-IT forecast covering colocation, self-build, and build-to-suit. Its [Abu Dhabi forecast rises from 434 to 798 MW](https://content.knightfrank.com/research/2960/documents/en/data-centres-global-forecast-report-2026-12620.pdf), so the replacement is 798 - 434 = 364 MW; the first Stargate tranche is already included and is not added again. [Scope-audit adjusted 2026-08-12.]"
    }
   },
   "Saudi Arabia": {
@@ -441,52 +441,52 @@
     "reasoning": "[The Saudi Press Agency](https://www.spa.gov.sa/ar/w2575816) is the anchor: it reports 440 MW of operational national capacity in 2025. The 150 MW estimate is the direct delta from KAPSARC/MCIT's 290.5 MW 2024 snapshot to 440 MW and is rounded from 149.5 MW."
    },
    "2026": {
-    "mw": 120.0,
-    "reasoning": "[The Saudi Press Agency's May 2026 briefing](https://www.spa.gov.sa/en/N2586548) is the anchor: operational capacity reached 467 MW in Q1-2026 versus 440 MW in 2025 or 27 MW added year to date. The 120 MW full-year median adds 93 MW for the remaining three quarters from active builds including [Microsoft's three construction-complete sites due in Q4](https://news.microsoft.com/en-xm/2024/12/04/microsoft-shares-strong-progress-on-datacenter-region-in-saudi-arabia-construction-complete-on-three-sites-with-availability-expected-in-2026-2/) and discounts the much larger announced-only pipeline."
+    "mw": 214.0,
+    "reasoning": "Replace the partial national project inference with Knight Frank/DC Byte's ownership-neutral live-IT forecast, which is a conservative floor because it covers Riyadh rather than all Saudi markets. The [Riyadh stock rises from 79 to 293 MW](https://content.knightfrank.com/research/2960/documents/en/data-centres-global-forecast-report-2026-12620.pdf), giving 293 - 79 = 214 MW; Microsoft's region is not separately added because it may be embedded. [Scope-audit adjusted 2026-08-12.]"
    }
   },
   "Canada": {
    "2022": {
     "mw": 55.0,
-    "reasoning": "[CBRE's H2-2022 Toronto](https://www.cbre.ca/insights/local-response/north-america-data-center-trends-h2-2022-toronto) and [Montr\u00e9al](https://www.cbre.com/insights/local-response/north-america-data-center-trends-h2-2022-montreal) snapshots are the anchors at 229.3 MW and 135.5 MW of inventory. The 55 MW estimate infers about 49 MW of Toronto growth against the approximately 180 MW 2021 base and adds 6 MW for operational additions elsewhere in Canada while Montr\u00e9al was essentially flat."
+    "reasoning": "[CBRE's H2-2022 Toronto](https://www.cbre.ca/insights/local-response/north-america-data-center-trends-h2-2022-toronto) and [Montr\u00e9al](https://www.cbre.com/insights/local-response/north-america-data-center-trends-h2-2022-montreal) snapshots are the anchors at 229.3 MW and 135.5 MW of inventory. The 55 MW estimate infers about 49 MW of Toronto growth against the approximately 180 MW 2021 base and adds 6 MW for operational additions elsewhere in Canada while Montr\u00e9al was essentially flat. [Scope audit: treat as a floor; rough range 55-70.]"
    },
    "2023": {
     "mw": 95.0,
-    "reasoning": "[CBRE's H2-2023 market table](https://www.cbre.co.nz/press-releases/north-american-data-center-pricing-nears-record-highs-driven-by-demand-limited-availablily) is the anchor: Toronto plus Montr\u00e9al inventory rose from 364.8 MW at end-2022 to 438.9 MW at end-2023 or 74.1 MW. The 95 MW estimate adds an inferred 21 MW outside those metros led by the [December launch of AWS's three-AZ Canada West region](https://aws.amazon.com/blogs/aws/the-aws-canada-west-calgary-region-is-now-available/)."
+    "reasoning": "[CBRE's H2-2023 market table](https://www.cbre.co.nz/press-releases/north-american-data-center-pricing-nears-record-highs-driven-by-demand-limited-availablily) is the anchor: Toronto plus Montr\u00e9al inventory rose from 364.8 MW at end-2022 to 438.9 MW at end-2023 or 74.1 MW. The 95 MW estimate adds an inferred 21 MW outside those metros led by the [December launch of AWS's three-AZ Canada West region](https://aws.amazon.com/blogs/aws/the-aws-canada-west-calgary-region-is-now-available/). [Scope audit: treat as a floor; rough range 95-115.]"
    },
    "2024": {
     "mw": 98.0,
-    "reasoning": "[CBRE's H2-2024 table](https://www.cbre.com/press-releases/atlanta-emerges-as-national-leader-in-data-center-net-absorption) is the anchor: Montr\u00e9al reached 214.5 MW while Toronto was approximately 311.8 MW after [H1-2024](https://www.cbre.com/press-releases/north-american-data-center-vacancy-rates-hit-record-low-despite-significant-supply-growth). The 98 MW estimate is the 87.4 MW Toronto-plus-Montr\u00e9al delta from end-2023 plus an inferred 11 MW for Vancouver Calgary and other Canadian markets."
+    "reasoning": "[CBRE's H2-2024 table](https://www.cbre.com/press-releases/atlanta-emerges-as-national-leader-in-data-center-net-absorption) is the anchor: Montr\u00e9al reached 214.5 MW while Toronto was approximately 311.8 MW after [H1-2024](https://www.cbre.com/press-releases/north-american-data-center-vacancy-rates-hit-record-low-despite-significant-supply-growth). The 98 MW estimate is the 87.4 MW Toronto-plus-Montr\u00e9al delta from end-2023 plus an inferred 11 MW for Vancouver Calgary and other Canadian markets. [Scope audit: treat as a floor; rough range 98-113.]"
    },
    "2025": {
     "mw": 150.0,
-    "reasoning": "[Knight Frank's 2026 Data Centre Atlas](https://www.knightfrank.co.uk/site-assets/research/report-pdfs/data-centres/data-centre-atlas-2026.pdf) is the anchor: Toronto ended 2025 at 427 MW live versus CBRE's approximately 311.8 MW end-2024 level. The 150 MW estimate adds the 115 MW Toronto delta to at least 17.4 MW of disclosed Montr\u00e9al delivery at [QScale and Enovum](https://www.cbre.com/insights/local-response/north-america-data-center-trends-h1-2025-market-profiles-montreal) and infers about 18 MW in the rest of Canada."
+    "reasoning": "[Knight Frank's 2026 Data Centre Atlas](https://www.knightfrank.co.uk/site-assets/research/report-pdfs/data-centres/data-centre-atlas-2026.pdf) is the anchor: Toronto ended 2025 at 427 MW live versus CBRE's approximately 311.8 MW end-2024 level. The 150 MW estimate adds the 115 MW Toronto delta to at least 17.4 MW of disclosed Montr\u00e9al delivery at [QScale and Enovum](https://www.cbre.com/insights/local-response/north-america-data-center-trends-h1-2025-market-profiles-montreal) and infers about 18 MW in the rest of Canada. [Scope audit: treat as a floor; rough range 150-170.]"
    },
    "2026": {
-    "mw": 48,
+    "mw": 48.0,
     "reasoning": "[Yondr's Toronto project](https://www.yondrgroup.com/newsroom/press-release/yondr-group-celebrates-groundbreaking-for-27mw-toronto-data-center/) contributes 27 MW of construction-backed 2026 capacity, and [Cologix MTL8](https://www.newswire.ca/news-releases/la-caisse-invests-cad-240-million-to-advance-cologix-s-ai-ready-mtl8-data-centre-in-montreal-808461359.html) contributes 21 MW in service. The corrected total is 27 + 21 = 48 MW; the former 4 MW and 5 MW items were existing power or tenant demand rather than new infrastructure, and the uncited 13 MW residual is excluded. [Red-team adjusted 2026-08-12.]"
    }
   },
   "Brazil": {
    "2022": {
-    "mw": 76.0,
-    "reasoning": "[Brazil's ABDI operator-by-operator capacity mapping](https://api.abdi.com.br/file-manager/upload/files/Apresentac%CC%A7a%CC%83o_Produto_2_-_Mapeamento_de_Oportunidades_vfinal.pdf) is the anchor and its principal-developer 2022 schedules sum to about 76 MW. The 76 MW is therefore a bottom-up inference rather than a national snapshot delta and is checked against the 18 MW [Scala SGRUTB05 opening](https://www.prnewswire.com/news-releases/scala-data-centers-launches-the-largest-vertical-data-center-in-latin-america-301615794.html) and 31 MW [Ascenty Hortol\u00e2ndia 5 opening](https://ascenty.com/blog/news-ascenty/ascenty-inaugura-seu-quinto-data-center-em-hortolandia/) during 2022."
+    "mw": 33.0,
+    "reasoning": "The ABDI anchor is an operator schedule containing planned facility power, not delivered operational IT, so it is replaced by the dated live-site ledger. Scala SGRUTB04 contributes [12 MW IT](https://scaladatacenters.com/data-centers/) and Ascenty Hortolandia 5 contributes [30 MW facility](https://ascenty2.skystudio.com.br/en/data-centers-en/hortolandia/hortolandia-5/) / [1.44 PUE](https://ascenty.com/en/blog/articles/technology-and-sustainability/) = 20.8 MW IT; 12 + 20.8 = 32.8 MW, rounded to 33 MW. [Scope-audit adjusted 2026-08-12.]"
    },
    "2023": {
-    "mw": 63,
-    "reasoning": "[CBRE's 2023 and 2024 editions](https://www.cbre.com/insights/reports/global-data-center-trends-2024) imply Sao Paulo operational inventory rising from about 386 MW to 436 MW, a 50 MW addition. Outside Sao Paulo, [Scala documents 13.2 MW IT at Curauma](https://scaladatacenters.com/scala-data-centers-habilita-novo-mercado-hyperscale-em-curauma-no-chile-em-campus-com-capacidade-de-30mw-de-ti/), while the cited Porto Alegre project was not yet operational; 50 + 13.2 = 63.2 MW, rounded to 63 MW. [Red-team adjusted 2026-08-12.]"
+    "mw": 89.0,
+    "reasoning": "The baseline's 50 MW Sao Paulo colo delta incorrectly added 13.2 MW from Curauma, which is in Chile, and missed named Brazilian openings outside Sao Paulo. Add ODATA RJ01 24 MW, [Scala Rio 7.2 MW](https://www.datacenterdynamics.com/en/news/scala-data-centers-commences-operations-at-rio-de-janeiro-data-center-in-brazil/), [Scala Porto Alegre 4.8 MW](https://scaladatacenters.com/scala-data-centers-expande-presenca-no-brasil-com-novo-data-center-hyperedge-em-porto-alegre/), [Elea POA2 1 MW](https://eleadatacenters.com/en/2023/03/07/elea-digital-launches-first-phase-1mw-availability-in-porto-alegre-second-site/), and [Elea RJO1](https://eleadatacenters.com/2023/06/09/com-investimento-de-mais-r100-milhoes-elea-digital-inaugura-a-expansao-do-seu-data-center-no-rio-de-janeiro/) at 2.5 / 1.4 = 1.8 MW IT: 50 + 24 + 7.2 + 4.8 + 1 + 1.8 = 88.8 MW, rounded to 89 MW. [Scope-audit adjusted 2026-08-12.]"
    },
    "2024": {
     "mw": 65.0,
-    "reasoning": "[CBRE's 2024 and 2025 Global Data Center Trends reports](https://www.cbre.com/insights/reports/global-data-center-trends-2025) are the anchor: S\u00e3o Paulo inventory increased from approximately 436 MW in Q1-2024 to 493 MW in Q1-2025. The 65 MW estimate uses that approximately 57 MW metro snapshot delta as the calendar-year proxy and infers 8 MW of smaller operational additions elsewhere in Brazil."
+    "reasoning": "[CBRE's 2024 and 2025 Global Data Center Trends reports](https://www.cbre.com/insights/reports/global-data-center-trends-2025) are the anchor: S\u00e3o Paulo inventory increased from approximately 436 MW in Q1-2024 to 493 MW in Q1-2025. The 65 MW estimate uses that approximately 57 MW metro snapshot delta as the calendar-year proxy and infers 8 MW of smaller operational additions elsewhere in Brazil. [Scope audit: treat as a floor; rough range 65-80.]"
    },
    "2025": {
     "mw": 55.0,
-    "reasoning": "[CBRE's Global Data Center Trends 2026](https://www.cbre.com/insights/reports/global-data-center-trends-2026) is the anchor: S\u00e3o Paulo inventory reached 536.7 MW in Q1-2026 versus 493 MW in Q1-2025. The 55 MW estimate is the 43.7 MW S\u00e3o Paulo snapshot delta plus an inferred 11 MW delivered in Rio de Janeiro Porto Alegre and other Brazilian markets."
+    "reasoning": "[CBRE's Global Data Center Trends 2026](https://www.cbre.com/insights/reports/global-data-center-trends-2026) is the anchor: S\u00e3o Paulo inventory reached 536.7 MW in Q1-2026 versus 493 MW in Q1-2025. The 55 MW estimate is the 43.7 MW S\u00e3o Paulo snapshot delta plus an inferred 11 MW delivered in Rio de Janeiro Porto Alegre and other Brazilian markets. [Scope audit: treat as a floor; rough range 55-70.]"
    },
    "2026": {
-    "mw": 65.0,
-    "reasoning": "[Ascenty](https://ascenty.com/en/blog/news-ascenty-en/ascenty-sao-paulo-campus/) is the anchor: SPO05 began operations in May 2026 as part of its expanded S\u00e3o Paulo campus. The 65 MW median models about 20 MW for SPO05 plus about 45 MW from active late-stage projects including [Microsoft Sumar\u00e9 East](https://local.microsoft.com/blog/sumare-east-datacenter-construction-update/), while excluding Ada's just-broken-ground campus and Ascenty's projects explicitly scheduled for 2027."
+    "mw": 51.0,
+    "reasoning": "The baseline overstated Ascenty SPO05 at 20 MW; the operator lists [6 MW for SPO05](https://ascenty.com/data-centers/localizacao/brasil/sao-paulo-capital/sao-paulo-5-antiga/), while larger bundled capacity includes a future site. Retaining the baseline's 45 MW estimate for [Microsoft Sumare East](https://local.microsoft.com/blog/sumare-east-datacenter-construction-update/) gives 6 + 45 = 51 MW, with 2027 Ascenty projects excluded. [Scope-audit adjusted 2026-08-12.]"
    }
   }
  }
