@@ -3,7 +3,7 @@
  "unit": "MW of IT (critical) capacity added per year, medians",
  "updated": "2026-08-13",
  "estimate_year": "2026",
- "note": "Three red-team rounds applied: source audit, colocation-scope audit, forecast-methodology repair (2026-08-13).",
+ "note": "Three red-team rounds applied: source audit, colocation-scope audit, forecast-methodology repair (2026-08-13); US 2026E scope correction applied",
  "countries": {
   "Germany": {
    "2022": {
@@ -221,8 +221,8 @@
     "reasoning": "[FERC Figure 5](https://www.ferc.gov/sites/default/files/2026-03/26_State-of-the-Market_0324_1430.pdf) is the anchor: national in-service data-center capacity increases from about 40.6 GW at year-end 2024 to 50.9 GW at year-end 2025, a net addition near 10.3 GW of facility power. Dividing by 1.30 gives 7.9 GW IT; [LBNL](https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report.pdf?stream=top) supports the PUE convention, while [JLL's](https://www.jll.com/en-us/newsroom/jll-north-america-data-center-report-year-end-2025) 39 GW of active North American capacity is a scale check on the converted stock. [CBRE](https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025) independently shows 2,509.4 MW added in the eight primary wholesale markets alone."
    },
    "2026": {
-    "mw": 24000.0,
-    "reasoning": "[SemiAnalysis](https://newsletter.semianalysis.com/p/stop-saying-half-of-2026-us-datacenter) is the anchor: its June 2026 building-level forecast expects 24 GW to come online in the United States during 2026, with the projects already under construction and tracking toward delivery; its [model description](https://semianalysis.com/models-research/) confirms that capacity is measured as critical IT power. I use that 24 GW directly as the full-year median and exclude the early-stage announcement layer that the article explicitly treats as speculative. As cross-checks rather than additions, [JLL](https://www.jll.com/en-us/insights/market-dynamics/north-america-data-centers) reports more than 35 GW under construction in North America, while [Epoch AI](https://epoch.ai/data/ai-data-centers) provides satellite- and permit-based operating timelines for the largest AI sites but states that its coverage is intentionally incomplete."
+    "mw": 16200.0,
+    "reasoning": "[SemiAnalysis's June 25, 2026 Energy/Datacenter Model article](https://newsletter.semianalysis.com/p/us-grid-constraints-towards-40gw) is the controlling, newer forecast (model/net-addition scope): it gives +21 GW for 2026, while the accompanying chart labels the series US capacity net additions in gross DC MW and the prose calls it gross power demand. Convert that facility-power flow to the target critical-IT scope as 21,000 / 1.30 = 16,154 MW, rounded to 16,200 MW, using [SemiAnalysis's critical-IT/PUE definitions](https://newsletter.semianalysis.com/p/ai-datacenter-energy-dilemma-race). The June 18 [24 GW statement](https://newsletter.semianalysis.com/p/stop-saying-half-of-2026-us-datacenter) is an earlier gross-completions-style 'come online' figure with no unit label in the sentence; it should not be copied as critical IT, and the later 21 GW net/gross-power series supersedes it for this dataset's net-additions metric. The biggest uncertainty is that SemiAnalysis does not publish a bridge from 24 to 21 or a blended 2026 PUE; a 1.25-1.35 PUE gives 15.6-16.8 GW critical IT. [SA-scope correction 2026-08-13: prior 24,000 treated SemiAnalysis's facility-MW figure as critical IT.]"
    }
   },
   "Nordics": {
