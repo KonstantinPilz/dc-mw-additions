@@ -1,0 +1,196 @@
+error: unexpected argument '-s' found
+
+  tip: to pass '-s' as a value, use '-- -s'
+
+Usage: codex exec resume [OPTIONS] [SESSION_ID] [PROMPT]
+
+For more information, try '--help'.
+OpenAI Codex v0.147.0
+--------
+workdir: /home/ubuntu/projects/dc-mw-additions
+model: gpt-5.6-sol
+provider: openai
+approval: on-request
+sandbox: workspace-write [workdir, /tmp, $TMPDIR] (network access enabled)
+reasoning effort: high
+reasoning summaries: none
+session id: 019ffb16-ac4b-75f0-9a2b-730f5a6c08de
+--------
+user
+Sorry for the interruption - your process was killed by an infrastructure issue on our side. Please pick up where you left off on the line-chart rework of docs/index.html and finish it, verifying the page renders without console errors. Thank you!
+codex
+I’ll resume from the existing workspace state rather than redo the implementation. I’ll confirm the line-chart diff is intact, then rerun the HTTP, browser-render, interaction, responsive, dark-mode, and console-error checks against the current file.
+exec
+/bin/bash -lc "git status --short && git diff --check -- docs/index.html && rg -n \"meta name=\\\"robots\\\"|country-line|estimate-segment|estimate-point|direct-label|function render|Tap points for details|<footer>\" docs/index.html && node -e 'const fs=require(\"fs\"); const html=fs.readFileSync(\"docs/index.html\",\"utf8\"); const scripts=[...html.matchAll(/<script(?:\\s["'^>]*)?>(['"\\s\\S]*?)<\\/script>/g)].map(m=>m[1]).filter(Boolean); scripts.forEach(script=>new Function(script)); console.log("'`Inline scripts compiled: ${scripts.length}`)'"'" in /home/ubuntu/projects/dc-mw-additions
+ succeeded in 10ms:
+exec
+/bin/bash -lc 'python3 -m http.server 8765 --bind 127.0.0.1 --directory docs' in /home/ubuntu/projects/dc-mw-additions
+exec
+/bin/bash -lc "curl --fail --silent --show-error --head http://127.0.0.1:8765/ && curl --fail --silent --show-error http://127.0.0.1:8765/data.json | jq -e '{countries:(.countries|length), valid_years:all(.countries[]; keys == [\"2022\",\"2023\",\"2024\",\"2025\",\"2026\"]), positive_values:all(.countries[]; all(.[]; .mw > 0))}'" in /home/ubuntu/projects/dc-mw-additions
+ succeeded in 0ms:
+HTTP/1.0 200 OK
+Server: SimpleHTTP/0.6 Python/3.12.3
+Date: Thu, 13 Aug 2026 12:36:34 GMT
+Content-type: text/html
+Content-Length: 30827
+Last-Modified: Thu, 13 Aug 2026 12:29:54 GMT
+
+{
+  "countries": 22,
+  "valid_years": true,
+  "positive_values": true
+}
+
+codex
+The resumed file is intact: only `docs/index.html` is modified for this task, the inline JavaScript compiles, the server returns HTTP 200, and all 22 countries have complete positive 2022–2026 data. I’m now exercising the rendered DOM and interactive states in headless Chromium; the unrelated untracked log files are being left untouched.
+exec
+/bin/bash -lc 'chromium --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --remote-debugging-port=9223 --remote-allow-origins=* --user-data-dir=/tmp/dc-chart-resume-profile http://127.0.0.1:8765/' in /home/ubuntu/projects/dc-mw-additions
+exec
+/bin/bash -lc "python3 - <<'PY'
+import base64, json, os, socket, struct, time, urllib.request
+
+targets = json.load(urllib.request.urlopen('http://127.0.0.1:9223/json'))
+target = next(item for item in targets if item['type'] == 'page' and item['url'].startswith('http://127.0.0.1:8765'))
+url = target['webSocketDebuggerUrl']
+hostport, path = url.removeprefix('ws://').split('/', 1)
+host, port = hostport.split(':')
+sock = socket.create_connection((host, int(port)), timeout=5)
+key = base64.b64encode(os.urandom(16)).decode()
+request = (
+    f'GET /{path} HTTP/1.1\\r\\nHost: {hostport}\\r\\nUpgrade: websocket\\r\\n'
+    f'Connection: Upgrade\\r\\nSec-WebSocket-Key: {key}\\r\\nSec-WebSocket-Version: 13\\r\\n'
+    f'Origin: http://{hostport}\\r\\n\\r\\n'
+)
+sock.sendall(request.encode())
+response = b''
+while b'\\r\\n\\r\\n' not in response:
+    response += sock.recv(4096)
+assert b' 101 ' in response.split(b'\\r\\n', 1)[0]
+
+def send_frame(payload):
+    data = payload.encode(); mask = os.urandom(4); length = len(data); header = bytearray([0x81])
+    if length < 126: header.append(0x80 | length)
+    elif length < 65536: header.extend([0x80 | 126]); header.extend(struct.pack('"'!H'"', length))
+    else: header.extend([0x80 | 127]); header.extend(struct.pack('"'!Q'"', length))
+    header.extend(mask); header.extend(bytes(byte "'^ mask[i % 4] for i, byte in enumerate(data))); sock.sendall(header)
+
+def read_exact(length):
+    data = bytearray()
+    while len(data) < length: data.extend(sock.recv(length - len(data)))
+    return bytes(data)
+
+def read_frame():
+    first, second = read_exact(2); opcode = first & 0x0f; length = second & 0x7f
+    if length == 126: length = struct.unpack('"'"'!H'"', read_exact(2))[0]
+    elif length == 127: length = struct.unpack('"'!Q'"', read_exact(8))[0]
+    mask = read_exact(4) if second & 0x80 else None; payload = read_exact(length)
+    if mask: payload = bytes(byte "'^ mask[i % 4] for i, byte in enumerate(payload))
+    return opcode, payload
+
+next_id = 0; events = []
+def command(method, params=None):
+    global next_id
+    next_id += 1; request_id = next_id
+    send_frame(json.dumps({'"'id': request_id, 'method': method, 'params': params or {}}))
+    while True:
+        opcode, payload = read_frame()
+        if opcode "'!= 1: continue
+        message = json.loads(payload)
+        if message.get('"'id') == request_id:
+            if 'error' in message: raise RuntimeError(message['error'])
+            return message.get('result', {})
+        events.append(message)
+
+def evaluate(expression):
+    result = command('Runtime.evaluate', {'expression': expression, 'returnByValue': True, 'awaitPromise': True})['result']
+    if result.get('subtype') == 'error': raise RuntimeError(result)
+    return result.get('value')
+
+command('Runtime.enable'); command('Log.enable')
+time.sleep(0.2)
+print('default', evaluate(\"JSON.stringify({lines:document.querySelectorAll('.country-line').length,points:document.querySelectorAll('.point-hit').length,estimates:document.querySelectorAll('.estimate-point').length,status:document.querySelector('#chart-status').textContent,years:[...document.querySelectorAll('.year-axis text')].map(n=>n.textContent)})\"))
+print('toggles', evaluate(\"(()=>{for(const value of ['cumulative','linear']){const e=document.querySelector("'`input[value=${value}]`);e.checked=true;e.dispatchEvent(new Event('"'change',{bubbles:true}))}return JSON.stringify({status:document.querySelector('#chart-status').textContent,axis:document.querySelector('.axis-label').textContent,summary:document.querySelector('#chart-summary').textContent})})()\"))
+print('all', evaluate(\"(()=>{const e=document.querySelector('#country-count');e.value='all';e.dispatchEvent(new Event('change',{bubbles:true}));return JSON.stringify({lines:document.querySelectorAll('.country-line').length,points:document.querySelectorAll('.point-hit').length,status:document.querySelector('#chart-status').textContent})})()\"))
+print('compare', evaluate(\"(()=>{const b=[...document.querySelectorAll('.legend-item')];b[0].click();b[1].click();return JSON.stringify({lines:document.querySelectorAll('.country-line').length,selected:document.querySelectorAll('.legend-item.selected').length,resetVisible:"'!document.querySelector('"'#reset').hidden})})()\"))
+print('tooltip', evaluate(\"(()=>{const p=document.querySelector('.point-hit');p.dispatchEvent(new MouseEvent('mouseenter',{bubbles:true,clientX:200,clientY:200}));return JSON.stringify({visible:"'!document.querySelector('"'#tooltip').hidden,country:document.querySelector('#tooltip-country').textContent,links:document.querySelectorAll('#tooltip-reasoning a').length,value:document.querySelector('#tooltip-value').textContent})})()\"))
+command('Emulation.setDeviceMetricsOverride', {'width': 375, 'height': 812, 'deviceScaleFactor': 1, 'mobile': True})
+evaluate(\"window.dispatchEvent(new Event('resize'))\"); time.sleep(0.3)
+print('mobile', evaluate(\"JSON.stringify({viewport:innerWidth,svgWidth:Number(document.querySelector('#chart').getAttribute('width')),directLabels:document.querySelectorAll('.direct-label').length})\"))
+command('Emulation.setEmulatedMedia', {'features': [{'name':'prefers-color-scheme','value':'dark'}]})
+print('dark', evaluate(\"JSON.stringify({body:getComputedStyle(document.body).backgroundColor,card:getComputedStyle(document.querySelector('.chart-card')).backgroundColor})\"))
+errors = []
+for event in events:
+    method = event.get('method'); params = event.get('params', {})
+    if method == 'Runtime.exceptionThrown': errors.append(params.get('exceptionDetails', {}).get('text', 'exception'))
+    elif method == 'Log.entryAdded' and params.get('entry', {}).get('level') == 'error': errors.append(params['entry'].get('text', 'log error'))
+    elif method == 'Runtime.consoleAPICalled' and params.get('type') == 'error': errors.append('console.error')
+print('page_errors', json.dumps(errors))
+sock.close()
+PY" in /home/ubuntu/projects/dc-mw-additions
+ succeeded in 539ms:
+default {"lines":16,"points":40,"estimates":8,"status":"Annual additions · 8 countries ranked by 2022–26 total","years":["2022","2023","2024","2025","2026 est."]}
+toggles {"status":"Cumulative additions · 8 countries ranked by 2022–26 total","axis":"Cumulative MW since 2022","summary":"Linear scale · starts at zero · 2026 shown: 86,834 MW · Largest: United States"}
+all {"lines":44,"points":110,"status":"Cumulative additions · 22 countries ranked by 2022–26 total"}
+compare {"lines":4,"selected":2,"resetVisible":true}
+tooltip {"visible":true,"country":"United States","links":2,"value":"4,300 MW"}
+mobile {"viewport":375,"svgWidth":375,"directLabels":0}
+dark {"body":"rgb(16, 22, 25)","card":"rgb(23, 31, 35)"}
+page_errors []
+
+codex
+The live browser verification passed: the default view renders 8 country lines/40 points with “2026 est.”, all-country mode renders 22 lines/110 points, both toggles update correctly, legend comparison reduces to the selected countries, tooltips include clickable source links, the SVG fits a 375 px viewport, and dark-mode colors apply. Chromium captured zero page exceptions or console errors.
+ exited 1 in 38629ms:
+127.0.0.1 - - [13/Aug/2026 08:36:34] "HEAD / HTTP/1.1" 200 -
+127.0.0.1 - - [13/Aug/2026 08:36:34] "GET /data.json HTTP/1.1" 200 -
+127.0.0.1 - - [13/Aug/2026 08:36:42] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [13/Aug/2026 08:36:42] "GET /data.json HTTP/1.1" 200 -
+^C
+ succeeded in 26973ms:
+TU: error: ../src/freedreno/vulkan/tu_knl.cc:387: failed to open device /dev/dri/renderD128 (VK_ERROR_INCOMPATIBLE_DRIVER)
+
+DevTools listening on ws://127.0.0.1:9223/devtools/browser/1dea1e7b-9bde-4996-bad2-6b44dcc50508
+[838839:838839:0813/083642.397001:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.ListActivatableNames: object_path= /org/freedesktop/DBus: org.freedesktop.DBus.Error.AccessDenied: An AppArmor policy prevents this sender from sending this message to this recipient; type="method_call", sender=":1.252" (uid=1001 pid=838839 comm="/snap/chromium/3498/usr/lib/chromium-browser/chrom" label="snap.chromium.chromium (enforce)") interface="org.freedesktop.DBus" member="ListActivatableNames" error name="(unset)" requested_reply="0" destination="org.freedesktop.DBus" (bus)
+[838839:838839:0813/083642.398995:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.ListActivatableNames: object_path= /org/freedesktop/DBus: org.freedesktop.DBus.Error.AccessDenied: An AppArmor policy prevents this sender from sending this message to this recipient; type="method_call", sender=":1.252" (uid=1001 pid=838839 comm="/snap/chromium/3498/usr/lib/chromium-browser/chrom" label="snap.chromium.chromium (enforce)") interface="org.freedesktop.DBus" member="ListActivatableNames" error name="(unset)" requested_reply="0" destination="org.freedesktop.DBus" (bus)
+[838839:838839:0813/083642.404780:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.UPower was not provided by any .service files
+[838839:838966:0813/083644.726414:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT
+^C
+exec
+/bin/bash -lc 'git diff --check -- docs/index.html && git diff --stat -- docs/index.html && git status --short' in /home/ubuntu/projects/dc-mw-additions
+ succeeded in 0ms:
+ docs/index.html | 204 +++++++++++++++++++++++++++++++++++++++++---------------
+ 1 file changed, 150 insertions(+), 54 deletions(-)
+ M docs/index.html
+?? run.log
+?? viz_line_run.log
+
+codex
+Completed the line-chart rework in [docs/index.html](/home/ubuntu/projects/dc-mw-additions/docs/index.html:757).
+
+Verified:
+
+- Page and `data.json` return HTTP 200.
+- Annual/cumulative and log/linear toggles work.
+- Top-N/all and legend isolate/compare work.
+- Tooltips contain linked reasoning sources.
+- 2026 uses dashed segments, open markers, and an estimate label.
+- Mobile and dark-mode rendering work.
+- Headless Chromium reported zero page exceptions or console errors.
+- `git diff --check` passes.
+
+Only `docs/index.html` was edited; existing untracked log files were left untouched.
+tokens used
+143,259
+Completed the line-chart rework in [docs/index.html](/home/ubuntu/projects/dc-mw-additions/docs/index.html:757).
+
+Verified:
+
+- Page and `data.json` return HTTP 200.
+- Annual/cumulative and log/linear toggles work.
+- Top-N/all and legend isolate/compare work.
+- Tooltips contain linked reasoning sources.
+- 2026 uses dashed segments, open markers, and an estimate label.
+- Mobile and dark-mode rendering work.
+- Headless Chromium reported zero page exceptions or console errors.
+- `git diff --check` passes.
+
+Only `docs/index.html` was edited; existing untracked log files were left untouched.

@@ -253,7 +253,8 @@
 
     #chart {
       display: block;
-      min-height: 460px;
+      width: 100%;
+      min-height: 500px;
       shape-rendering: geometricPrecision;
     }
 
@@ -277,17 +278,40 @@
       font-weight: 650;
     }
 
-    .bar {
-      cursor: pointer;
-      stroke: color-mix(in srgb, var(--surface), transparent 45%);
-      stroke-width: 0.5;
+    .country-line {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2.35;
+      pointer-events: none;
     }
 
-    .bar:hover,
-    .bar:focus-visible {
-      filter: brightness(1.08);
+    .estimate-segment {
+      stroke-dasharray: 5 5;
+    }
+
+    .data-point {
+      stroke-width: 1.7;
+      pointer-events: none;
+    }
+
+    .estimate-point {
+      fill: var(--surface);
+      stroke-width: 2.2;
+    }
+
+    .point-hit {
+      cursor: pointer;
+      fill: transparent;
+      stroke: transparent;
+      stroke-width: 1;
+    }
+
+    .point-hit:hover,
+    .point-hit:focus-visible {
+      fill: color-mix(in srgb, var(--surface), transparent 35%);
       stroke: var(--ink);
-      stroke-width: 1.2;
+      stroke-width: 1.5;
     }
 
     .axis-label {
@@ -296,9 +320,18 @@
       font-weight: 600;
     }
 
-    .estimate-marker {
+    .estimate-boundary {
       stroke: var(--line-strong);
       stroke-dasharray: 3 4;
+    }
+
+    .direct-label {
+      font-size: 11px;
+      font-weight: 700;
+      paint-order: stroke;
+      stroke: var(--surface);
+      stroke-linejoin: round;
+      stroke-width: 4px;
     }
 
     .legend-wrap {
@@ -361,9 +394,9 @@
 
     .swatch {
       flex: 0 0 auto;
-      width: 10px;
-      height: 10px;
-      border-radius: 2px;
+      width: 16px;
+      height: 3px;
+      border-radius: 999px;
     }
 
     .country-name {
@@ -480,6 +513,7 @@
       .legend-wrap { padding-inline: 18px; }
       .legend-head { display: block; }
       .legend-head p { margin-top: 3px; }
+      #chart { min-height: 450px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -545,7 +579,7 @@
       <div class="chart-scroll" id="chart-scroll">
         <svg id="chart" role="img" aria-labelledby="svg-title svg-desc">
           <title id="svg-title">Data-center capacity additions by country from 2022 to 2026</title>
-          <desc id="svg-desc">A grouped bar chart. Use the controls to change the measure, scale, and countries shown.</desc>
+          <desc id="svg-desc">A line chart with one line per country. The final segment to 2026 is dashed because 2026 is a full-year estimate. Use the controls to change the measure, scale, and countries shown.</desc>
         </svg>
       </div>
 
@@ -725,19 +759,27 @@
 
         hideTooltip();
         const visibleNames = visibleCountryNames();
-        const visible = countries.filter(d => visibleNames.includes(d.country));
-        const values = visible.flatMap(country => country.observations.map(observation => ({
-          ...observation,
-          value: observation[state.mode]
-        })));
+        const countryByName = new Map(countries.map(country => [country.country, country]));
+        const visible = visibleNames.map(country => countryByName.get(country));
+        const series = visible.map(country => ({
+          ...country,
+          observations: country.observations.map(observation => ({
+            ...observation,
+            value: observation[state.mode]
+          }))
+        }));
+        const values = series.flatMap(country => country.observations);
 
-        // All-country mode needs slightly more horizontal room so each grouped bar
-        // remains a usable hover target on small screens.
         const availableWidth = Math.max(chartScroll.clientWidth, 320);
-        const minWidth = Math.max(680, visibleNames.length * 31 + 330);
-        const width = Math.max(availableWidth, minWidth);
-        const height = 480;
-        const margin = { top: 38, right: 24, bottom: 52, left: width < 760 ? 58 : 70 };
+        const width = availableWidth;
+        const height = width < 560 ? 450 : 500;
+        const showDirectLabels = width >= 760;
+        const margin = {
+          top: 38,
+          right: showDirectLabels ? 132 : 22,
+          bottom: 58,
+          left: width < 560 ? 54 : 70
+        };
         const innerWidth = width - margin.left - margin.right;
         const innerHeight = height - margin.top - margin.bottom;
         const maxValue = d3.max(values, d => d.value);
@@ -749,16 +791,9 @@
           .attr("class", "chart-layer")
           .attr("transform", `translate(${margin.left},${margin.top})`);
 
-        const xYear = d3.scaleBand()
+        const xYear = d3.scalePoint()
           .domain(years)
-          .range([0, innerWidth])
-          .paddingInner(0.22)
-          .paddingOuter(0.05);
-
-        const xCountry = d3.scaleBand()
-          .domain(visibleNames)
-          .range([0, xYear.bandwidth()])
-          .padding(0.08);
+          .range([0, innerWidth]);
 
         const logFloor = 5;
         const y = state.scale === "log"
@@ -785,30 +820,52 @@
           .attr("y", -19)
           .text(state.mode === "annual" ? "MW added" : "Cumulative MW since 2022");
 
-        const estimateX = xYear("2026") - xYear.step() * 0.11;
+        const estimateX = (xYear("2025") + xYear("2026")) / 2;
         root.append("line")
-          .attr("class", "estimate-marker")
+          .attr("class", "estimate-boundary")
           .attr("x1", estimateX)
           .attr("x2", estimateX)
           .attr("y1", 0)
           .attr("y2", innerHeight);
 
-        const yearGroups = root.selectAll("g.year-group")
-          .data(years)
-          .join("g")
-          .attr("class", "year-group")
-          .attr("transform", year => `translate(${xYear(year)},0)`);
+        const line = d3.line()
+          .x(d => xYear(d.year))
+          .y(d => y(d.value));
 
-        yearGroups.selectAll("rect")
-          .data(year => values.filter(d => d.year === year))
-          .join("rect")
-          .attr("class", "bar")
-          .attr("x", d => xCountry(d.country))
-          .attr("y", d => y(d.value))
-          .attr("width", Math.max(1, xCountry.bandwidth()))
-          .attr("height", d => Math.max(1, y(state.scale === "log" ? logFloor : 0) - y(d.value)))
-          .attr("rx", 1.5)
-          .attr("fill", d => colorByCountry.get(d.country))
+        const seriesGroups = root.append("g")
+          .attr("class", "series-layer")
+          .selectAll("g.country-series")
+          .data(series)
+          .join("g")
+          .attr("class", "country-series");
+
+        seriesGroups.append("path")
+          .attr("class", "country-line observed-segment")
+          .attr("d", d => line(d.observations.slice(0, -1)))
+          .attr("stroke", d => colorByCountry.get(d.country));
+
+        seriesGroups.append("path")
+          .attr("class", "country-line estimate-segment")
+          .attr("d", d => line(d.observations.slice(-2)))
+          .attr("stroke", d => colorByCountry.get(d.country));
+
+        seriesGroups.selectAll("circle.data-point")
+          .data(d => d.observations)
+          .join("circle")
+          .attr("class", d => `data-point${d.year === "2026" ? " estimate-point" : ""}`)
+          .attr("cx", d => xYear(d.year))
+          .attr("cy", d => y(d.value))
+          .attr("r", d => d.year === "2026" ? 4.2 : 3)
+          .attr("fill", d => d.year === "2026" ? null : colorByCountry.get(d.country))
+          .attr("stroke", d => colorByCountry.get(d.country));
+
+        seriesGroups.selectAll("circle.point-hit")
+          .data(d => d.observations)
+          .join("circle")
+          .attr("class", "point-hit")
+          .attr("cx", d => xYear(d.year))
+          .attr("cy", d => y(d.value))
+          .attr("r", 10)
           .attr("tabindex", 0)
           .attr("role", "img")
           .attr("aria-label", d => `${d.country}, ${d.year}: ${numberFormat(d.value)} megawatts${state.mode === "cumulative" ? " cumulative since 2022" : " added"}`)
@@ -818,6 +875,34 @@
           .on("focus", (event, d) => showTooltipForElement(event.currentTarget, d))
           .on("blur", scheduleTooltipHide);
 
+        if (showDirectLabels) {
+          const labelCandidates = series
+            .slice()
+            .sort((a, b) => d3.descending(
+              a.observations.at(-1).value,
+              b.observations.at(-1).value
+            ))
+            .slice(0, Math.min(4, series.length))
+            .map(country => ({
+              country: country.country,
+              color: colorByCountry.get(country.country),
+              y: y(country.observations.at(-1).value)
+            }));
+
+          spreadLabels(labelCandidates, 15, 6, innerHeight - 6);
+          root.append("g")
+            .attr("class", "direct-labels")
+            .selectAll("text")
+            .data(labelCandidates)
+            .join("text")
+            .attr("class", "direct-label")
+            .attr("x", xYear("2026") + 11)
+            .attr("y", d => d.y)
+            .attr("dy", "0.35em")
+            .attr("fill", d => d.color)
+            .text(d => d.country);
+        }
+
         root.append("g")
           .attr("class", "axis year-axis")
           .attr("transform", `translate(0,${innerHeight})`)
@@ -826,14 +911,14 @@
         const lastYearValue = d => d.observations[d.observations.length - 1][state.mode];
         const visibleTotal = d3.sum(visible, lastYearValue);
         const largest = d3.greatest(visible, lastYearValue);
-        const scaleLabel = state.scale === "log" ? "Log scale · bars start at 5 MW" : "Linear scale · starts at zero";
+        const scaleLabel = state.scale === "log" ? "Log scale" : "Linear scale · starts at zero";
         const selectionLabel = state.selected.size
           ? `${visibleNames.length} selected ${visibleNames.length === 1 ? "country" : "countries"}`
           : `${visibleNames.length} countries ranked by 2022–26 total`;
 
         status.textContent = `${state.mode === "annual" ? "Annual additions" : "Cumulative additions"} · ${selectionLabel}`;
-        const scrollLabel = window.innerWidth <= 540 ? "Swipe chart → · " : "";
-        summary.textContent = `${scrollLabel}${scaleLabel} · 2026 shown: ${numberFormat(visibleTotal)} MW · Largest: ${largest.country}`;
+        const interactionLabel = window.innerWidth <= 540 ? "Tap points for details · " : "";
+        summary.textContent = `${interactionLabel}${scaleLabel} · 2026 shown: ${numberFormat(visibleTotal)} MW · Largest: ${largest.country}`;
         reset.hidden = state.selected.size === 0;
 
         document.querySelectorAll(".legend-item").forEach(button => {
@@ -843,6 +928,17 @@
           button.classList.toggle("not-shown", !visibleNames.includes(country));
           button.setAttribute("aria-pressed", String(selected));
         });
+      }
+
+      function spreadLabels(labels, gap, minY, maxY) {
+        labels.sort((a, b) => d3.ascending(a.y, b.y));
+        labels.forEach((label, index) => {
+          label.y = Math.max(label.y, index === 0 ? minY : labels[index - 1].y + gap);
+        });
+        for (let index = labels.length - 1; index >= 0; index -= 1) {
+          const ceiling = index === labels.length - 1 ? maxY : labels[index + 1].y - gap;
+          labels[index].y = Math.min(labels[index].y, ceiling);
+        }
       }
 
       function showTooltip(event, datum) {
